@@ -35,18 +35,18 @@
 
 | 구분 | 기술 | 버전 | 용도 |
 |------|------|------|------|
-| **프레임워크** | Spring Boot | 3.2.5 | 웹·보안·JPA·검증 |
+| **프레임워크** | Spring Boot | 4.0.3 | 웹·보안·JPA·검증 |
 | **언어** | Java | 17 | JDK |
-| **빌드** | Gradle (Kotlin DSL) | - | build.gradle.kts |
+| **빌드** | Gradle (Kotlin DSL) | 8.14 | build.gradle.kts |
 | **웹** | spring-boot-starter-web | - | REST API |
 | **보안** | spring-boot-starter-security | - | 인증·인가 |
 | **ORM** | spring-boot-starter-data-jpa | - | JPA·Hibernate |
 | **검증** | spring-boot-starter-validation | - | Bean Validation |
-| **인증 토큰** | JJWT (jjwt-api, jjwt-impl, jjwt-jackson) | 0.12.5 | JWT 발급·검증 |
+| **인증 토큰** | JJWT (jjwt-api, jjwt-impl, jjwt-jackson) | 0.13.0 | JWT 발급·검증 |
 | **DB (운영)** | MariaDB JDBC | - | MariaDB 연결 |
 | **DB (개발)** | H2 | - | 인메모리 DB (dev 프로필) |
 | **편의** | Lombok | - | 보일러플레이트 감소 |
-| **테스트** | spring-boot-starter-test, spring-security-test | - | JUnit 5, MockMvc 등 |
+| **테스트** | spring-boot-starter-*-test (webmvc, security, jackson2) | - | JUnit 5, MockMvc, @MockitoBean 등 |
 
 - **설정**: `application.yml` + `application-dev.yml` (프로필별)
 - **기본 API 포트**: 2602
@@ -95,7 +95,9 @@
 ## 3. 요약
 
 - **Frontend**: Next.js 16 + React 19 + TypeScript + Tailwind + React Query + Zustand + React Hook Form + Zod + i18n + Radix 기반 UI.
-- **Backend**: Spring Boot 3 + Java 17 + JPA + Security + JWT + MariaDB/H2.
+- **Backend**: Spring Boot 4 + Java 17 + JPA + Security + JWT + MariaDB/H2.
 - **추가 시 우선 추천**: 토스트 알림, API 문서(Springdoc), Redis 캐시, 테스트(단위/E2E), Docker/Compose. (폼은 React Hook Form + Zod 도입 완료)
+
+**유지보수·추후 개선** (의존성 업데이트, CVE 대응, 주기 점검): **[docs/MAINTENANCE.md](docs/MAINTENANCE.md)** 참고.
 
 문서 갱신 시점: `package.json`, `build.gradle.kts` 기준.

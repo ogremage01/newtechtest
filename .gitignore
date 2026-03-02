@@ -31,3 +31,5 @@ Thumbs.db
 *.class
 *.jar
 !.mvn/wrapper/maven-wrapper.jar
+*.tar
+*.tar.gz
