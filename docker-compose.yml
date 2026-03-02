@@ -1,0 +1,38 @@
+services:
+  # 통합 앱: 한 컨테이너에서 백엔드 + 프론트엔드 (Nginx가 /api → 백엔드, / → 프론트)
+  # H2 인메모리 사용(테스트용, DB 컨테이너 불필요)
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SERVER_PORT: 2602
+      CORS_ORIGINS: http://localhost,http://localhost:80
+      JWT_SECRET: ${JWT_SECRET:-change-this-to-a-secure-256-bit-secret-in-production}
+      API_SERVER_URL: http://127.0.0.1:2602
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "2603:2602" # 호스트 2603 → 컨테이너 2602 (로컬 bootRun 2602와 충돌 방지)
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SERVER_PORT: 2602
+      CORS_ORIGINS: http://localhost:3000,http://localhost:3001,http://frontend:3000
+      JWT_SECRET: ${JWT_SECRET:-change-this-to-a-secure-256-bit-secret-in-production}
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"  # 호스트 3001 (로컬 next dev 3000과 충돌 방지)
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:2603
+    depends_on:
+      - backend

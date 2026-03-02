@@ -1,0 +1,25 @@
+---
+description: 컨트롤러 URL 매핑 시 풀 도메인 주석 작성 (디버깅/검색용)
+globs: "**/controller/**/*.java,**/*Controller.java"
+alwaysApply: false
+---
+
+# 컨트롤러 URL 매핑 주석 규칙
+
+URL 매핑을 추가·수정할 때 **풀 도메인**을 주석으로 반드시 남긴다.
+(예: 로컬 개발 시 `http://localhost:8080` 등)
+디버깅·검색 시 전체 URL로 찾기 쉽게 하기 위함.
+
+## 예시
+
+```java
+// POST http://localhost:8080/api/auth/login
+@PostMapping("/login")
+public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) { ... }
+
+// GET http://localhost:8080/api/auth/me
+@GetMapping("/me")
+public ResponseEntity<?> me() { ... }
+```
+
+클래스 레벨 `@RequestMapping`이 있으면 메서드 경로와 합쳐서 풀 경로를 주석에 적는다.

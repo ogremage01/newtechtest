@@ -1,0 +1,22 @@
+# Git
+.git
+.gitignore
+
+# Backend
+backend/build
+backend/.gradle
+backend/bin
+
+# Frontend
+frontend/node_modules
+frontend/.next
+frontend/.vercel
+
+# IDE / OS
+.idea
+*.iml
+.DS_Store
+*.log
+
+# Optional: 기존 개별 Docker 빌드 결과 제외
+# (통합 빌드에는 영향 없음)

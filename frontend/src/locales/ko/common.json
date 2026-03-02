@@ -1,0 +1,75 @@
+{
+    "siteTitle": "쇼핑몰",
+    "siteDescription": "중소형 쇼핑몰 - 다양한 상품을 만나보세요.",
+    "nav": {
+        "home": "쇼핑몰",
+        "products": "상품",
+        "cart": "장바구니",
+        "admin": "관리자",
+        "login": "로그인",
+        "logout": "로그아웃"
+    },
+    "home": {
+        "heroTitle": "쇼핑몰에 오신 것을 환영합니다",
+        "heroSubtitle": "다양한 상품을 만나보세요.",
+        "cta": "상품 보기",
+        "sectionProductsTitle": "상품",
+        "sectionProductsDesc": "다양한 카테고리의 상품을 둘러보세요.",
+        "sectionCartTitle": "장바구니",
+        "sectionCartDesc": "담은 상품을 확인하고 결제하세요.",
+        "view": "보기"
+    },
+    "cart": {
+        "title": "장바구니",
+        "empty": "장바구니가 비어 있습니다.",
+        "total": "총 금액",
+        "checkout": "결제하기",
+        "continueShopping": "계속 쇼핑하기"
+    },
+    "login": {
+        "title": "로그인",
+        "email": "이메일",
+        "password": "비밀번호",
+        "button": "로그인",
+        "registerButton": "회원가입",
+        "error": "로그인에 실패했습니다. 이메일과 비밀번호를 확인해 주세요.",
+        "submitting": "로그인 중...",
+        "validation": {
+            "emailRequired": "이메일을 입력해 주세요.",
+            "emailInvalid": "올바른 이메일 주소를 입력해 주세요.",
+            "passwordRequired": "비밀번호를 입력해 주세요."
+        },
+        "showPassword": "비밀번호 보기",
+        "hidePassword": "비밀번호 숨기기"
+    },
+    "user": {
+        "error": {
+            "duplicateEmail": "이미 존재하는 이메일입니다.",
+            "invalidPassword": "비밀번호는 8자 이상 20자 이하이며, 특수문자를 포함해야 합니다. 허용된 특수문자: !@#$%^&*()\\-_=+\\[\\]{}?,.",
+            "passwordNotMatch": "비밀번호가 일치하지 않습니다."
+        }
+    },
+    "register": {
+        "title": "회원가입",
+        "name": "이름",
+        "email": "이메일",
+        "password": "비밀번호",
+        "passwordConfirm": "비밀번호 확인",
+        "address": "주소",
+        "phone": "연락처",
+        "button": "가입하기",
+        "submitting": "가입 중...",
+        "success": "가입이 완료되었습니다. 로그인해 주세요.",
+        "error": "가입에 실패했습니다. 다시 시도해 주세요.",
+        "haveAccount": "이미 계정이 있으신가요?",
+        "mustType": "* 필수 입력 항목입니다.",
+        "validation": {
+            "nameRequired": "이름을 입력해 주세요.",
+            "emailRequired": "이메일을 입력해 주세요.",
+            "emailInvalid": "올바른 이메일 주소를 입력해 주세요.",
+            "passwordRequired": "비밀번호를 입력해 주세요.",
+            "passwordConfirmRequired": "비밀번호 확인을 입력해 주세요.",
+            "passwordNotMatch": "비밀번호가 일치하지 않습니다."
+        }
+    }
+}

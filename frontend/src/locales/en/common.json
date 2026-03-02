@@ -1,0 +1,75 @@
+{
+    "siteTitle": "Shop",
+    "siteDescription": "Discover a variety of products in our shop.",
+    "nav": {
+        "home": "Shop",
+        "products": "Products",
+        "cart": "Cart",
+        "admin": "Admin",
+        "login": "Login",
+        "logout": "Logout"
+    },
+    "home": {
+        "heroTitle": "Welcome to our shop",
+        "heroSubtitle": "Discover a variety of products.",
+        "cta": "View products",
+        "sectionProductsTitle": "Products",
+        "sectionProductsDesc": "Browse products across many categories.",
+        "sectionCartTitle": "Cart",
+        "sectionCartDesc": "Review items in your cart and checkout.",
+        "view": "View"
+    },
+    "cart": {
+        "title": "Cart",
+        "empty": "Your cart is empty.",
+        "total": "Total",
+        "checkout": "Checkout",
+        "continueShopping": "Continue shopping"
+    },
+    "login": {
+        "title": "Login",
+        "email": "Email",
+        "password": "Password",
+        "button": "Login",
+        "registerButton": "Register",
+        "error": "Login failed. Please check your email and password.",
+        "submitting": "Signing in...",
+        "validation": {
+            "emailRequired": "Please enter your email.",
+            "emailInvalid": "Please enter a valid email address.",
+            "passwordRequired": "Please enter your password."
+        },
+        "showPassword": "Show password",
+        "hidePassword": "Hide password"
+    },
+    "user": {
+        "error": {
+            "duplicateEmail": "This email is already registered.",
+            "invalidPassword": "Password must be 8–20 characters and include at least one special character: !@#$%^&*()\\-_=+[]{}?,.",
+            "passwordNotMatch": "Password does not match."
+        }
+    },
+    "register": {
+        "title": "Register",
+        "name": "Name",
+        "email": "Email",
+        "password": "Password",
+        "passwordConfirm": "Confirm password",
+        "address": "Address",
+        "phone": "Phone",
+        "button": "Register",
+        "submitting": "Registering...",
+        "success": "Registration successful. Please log in.",
+        "error": "Registration failed. Please try again.",
+        "haveAccount": "Already have an account?",
+        "mustType": "* Please enter information. it's required.",
+        "validation": {
+            "nameRequired": "Please enter your name.",
+            "emailRequired": "Please enter your email.",
+            "emailInvalid": "Please enter a valid email address.",
+            "passwordRequired": "Please enter your password.",
+            "passwordConfirmRequired": "Please confirm your password.",
+            "passwordNotMatch": "Password does not match."
+        }
+    }
+}
