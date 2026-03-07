@@ -42,6 +42,14 @@
         "showPassword": "비밀번호 보기",
         "hidePassword": "비밀번호 숨기기"
     },
+    "terms": {
+        "title": "서비스 이용약관",
+        "content": "<b>서비스 이용약관 내용</b><br><br><a href='https://www.google.com'>Google</a>"
+    },
+    "privacy": {
+        "title": "개인정보 처리방침",
+        "content": "<b>개인정보 처리방침 내용</b><br><br><a href='https://www.google.com'>Google</a>"
+    },
     "user": {
         "error": {
             "duplicateEmail": "이미 존재하는 이메일입니다.",
@@ -63,13 +71,24 @@
         "error": "가입에 실패했습니다. 다시 시도해 주세요.",
         "haveAccount": "이미 계정이 있으신가요?",
         "mustType": "* 필수 입력 항목입니다.",
+        "termsOfService": "서비스 이용약관",
+        "privacyPolicy": "개인정보 처리방침",
+        "termsAgreed": "서비스 이용약관 동의",
+        "privacyAgreed": "개인정보 처리방침 동의",
         "validation": {
             "nameRequired": "이름을 입력해 주세요.",
             "emailRequired": "이메일을 입력해 주세요.",
             "emailInvalid": "올바른 이메일 주소를 입력해 주세요.",
             "passwordRequired": "비밀번호를 입력해 주세요.",
             "passwordConfirmRequired": "비밀번호 확인을 입력해 주세요.",
-            "passwordNotMatch": "비밀번호가 일치하지 않습니다."
+            "passwordMatch": "비밀번호가 일치합니다.",
+            "passwordNotMatch": "비밀번호가 일치하지 않습니다.",
+            "termsAgreedRequired": "서비스 이용약관 동의를 해주세요.",
+            "privacyAgreedRequired": "개인정보 처리방침 동의를 해주세요."
         }
+    },
+    "common": {
+        "confirm": "확인",
+        "error": "오류가 발생했습니다. 다시 시도해 주세요."
     }
 }

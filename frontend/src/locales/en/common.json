@@ -42,6 +42,14 @@
         "showPassword": "Show password",
         "hidePassword": "Hide password"
     },
+    "terms": {
+        "title": "Terms of Service",
+        "content": "Terms of Service content"
+    },
+    "privacy": {
+        "title": "Privacy Policy",
+        "content": "Privacy Policy content"
+    },
     "user": {
         "error": {
             "duplicateEmail": "This email is already registered.",
@@ -63,13 +71,23 @@
         "error": "Registration failed. Please try again.",
         "haveAccount": "Already have an account?",
         "mustType": "* Please enter information. it's required.",
+        "termsOfService": "Terms of Service",
+        "privacyPolicy": "Privacy Policy",
+        "termsAgreed": "Terms of Service Agreed",
+        "privacyAgreed": "Privacy Policy Agreed",
         "validation": {
             "nameRequired": "Please enter your name.",
             "emailRequired": "Please enter your email.",
             "emailInvalid": "Please enter a valid email address.",
             "passwordRequired": "Please enter your password.",
             "passwordConfirmRequired": "Please confirm your password.",
-            "passwordNotMatch": "Password does not match."
+            "passwordMatch": "Passwords match.",
+            "passwordNotMatch": "Password does not match.",
+            "termsAgreedRequired": "Please agree to the terms of service.",
+            "privacyAgreedRequired": "Please agree to the privacy policy."
         }
+    },
+    "common": {
+        "confirm": "Confirm"
     }
 }

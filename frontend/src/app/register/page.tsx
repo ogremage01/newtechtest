@@ -9,18 +9,29 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { useState } from "react";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { api, getApiErrorMessage } from "@/lib/api";
 import { useRouter } from "next/navigation";
+import { TermsContent } from "./_components/TermsContent";
+import { PrivacyContent } from "./_components/PrivacyContent";
+
 
 /** 회원가입 요청 스키마. optinal=선택 입력 사항 */
-const registerSchema = z.object({
-    name: z.string().min(1, "register.validation.nameRequired"),
-    email: z.string().min(1, "register.validation.emailRequired").email("register.validation.emailInvalid"),
-    password: z.string().min(1, "register.validation.passwordRequired"),
-    passwordConfirm: z.string().min(1, "register.validation.passwordConfirmRequired"),
-    address: z.string().optional(),
-    phone: z.string().optional(),
-});
+const registerSchema = z
+    .object({
+        name: z.string().min(1, "register.validation.nameRequired"),
+        email: z.string().min(1, "register.validation.emailRequired").email("register.validation.emailInvalid"),
+        password: z.string().min(1, "register.validation.passwordRequired"),
+        passwordConfirm: z.string().min(1, "register.validation.passwordConfirmRequired"),
+        address: z.string().optional(),
+        phone: z.string().optional(),
+        termsAgreed: z.boolean(),
+        privacyAgreed: z.boolean(),
+    })
+    .refine((data) => data.password === data.passwordConfirm, {
+        message: "register.validation.passwordNotMatch",
+        path: ["passwordConfirm"],
+    });
 
 /** 회원가입 폼 값 타입 */
 type RegisterFormValues = z.infer<typeof registerSchema>;
@@ -39,10 +50,14 @@ export default function RegisterPage() {
     const togglePasswordConfirmVisibility = () => {
         setPasswordConfirmVisibility(!passwordConfirmVisibility);
     };
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<RegisterFormValues>({
+    const { register, handleSubmit, watch, formState: { errors, isSubmitting } } = useForm<RegisterFormValues>({
         defaultValues: { name: "", email: "", password: "", passwordConfirm: "", address: "", phone: "" },
         resolver: zodResolver(registerSchema),
     });
+    const password = watch("password");
+    const passwordConfirm = watch("passwordConfirm");
+    const showPasswordMatchHint = password.length > 0 && passwordConfirm.length > 0;
+    const passwordMatch = password === passwordConfirm;
 
     const onSubmit = async (data: RegisterFormValues) => {
         try {
@@ -133,7 +148,13 @@ export default function RegisterPage() {
                                 {passwordConfirmVisibility ? <EyeOffIcon className="size-4" /> : <EyeIcon className="size-4" />}
                             </Button>
                         </FieldContent>
-                        {errors.passwordConfirm?.message && <FieldError>{t(errors.passwordConfirm.message)}</FieldError>}
+                        {showPasswordMatchHint ? (
+                            <p className={passwordMatch ? "text-sm text-green-600" : "text-sm text-red-600"} role="status">
+                                {t(passwordMatch ? "register.validation.passwordMatch" : "register.validation.passwordNotMatch")}
+                            </p>
+                        ) : errors.passwordConfirm?.message ? (
+                            <FieldError>{t(errors.passwordConfirm.message)}</FieldError>
+                        ) : null}
                     </Field>
 
                     <Field>
@@ -150,6 +171,60 @@ export default function RegisterPage() {
                             <Input id="phone" type="text" {...register("phone")} aria-invalid={!!errors.phone} />
                         </FieldContent>
                         {errors.phone?.message && <FieldError>{t(errors.phone.message)}</FieldError>}
+                    </Field>
+                    <Field>
+                        <FieldLabel htmlFor="termsAgreed">{t("register.termsAgreed")}</FieldLabel>
+                        <FieldContent>
+                            <Input id="termsAgreed" type="checkbox" {...register("termsAgreed")} aria-invalid={!!errors.termsAgreed} />
+                            <Dialog>
+                                <DialogTrigger asChild>
+                                    <Button variant="link" className="text-sm text-center text-blue-500 hover:underline">
+                                        {t("register.termsOfService")}
+                                    </Button>
+                                </DialogTrigger>
+                                <DialogContent>
+                                    <DialogHeader>
+                                        <DialogTitle>{t("terms.title")}</DialogTitle>
+                                    </DialogHeader>
+                                    <DialogDescription>
+                                        <TermsContent />
+                                    </DialogDescription>
+                                    <DialogFooter>
+                                        <DialogClose asChild>
+                                            <Button variant="secondary">{t("common.confirm")}</Button>
+                                        </DialogClose>
+                                    </DialogFooter>
+                                </DialogContent>
+                            </Dialog>
+                        </FieldContent>
+                        {errors.termsAgreed?.message && <FieldError>{t(errors.termsAgreed.message)}</FieldError>}
+                    </Field>
+                    <Field>
+                        <FieldLabel htmlFor="privacyAgreed">{t("register.privacyAgreed")}</FieldLabel>
+                        <FieldContent>
+                            <Input id="privacyAgreed" type="checkbox" {...register("privacyAgreed")} aria-invalid={!!errors.privacyAgreed} />
+                            <Dialog>
+                                <DialogTrigger asChild>
+                                    <Button variant="link" className="text-sm text-center text-blue-500 hover:underline">
+                                        {t("register.privacyPolicy")}
+                                    </Button>
+                                </DialogTrigger>
+                                <DialogContent>
+                                    <DialogHeader>
+                                        <DialogTitle>{t("privacy.title")}</DialogTitle>
+                                    </DialogHeader>
+                                    <DialogDescription>
+                                        <PrivacyContent />
+                                    </DialogDescription>
+                                    <DialogFooter>
+                                        <DialogClose asChild>
+                                            <Button variant="secondary">{t("common.confirm")}</Button>
+                                        </DialogClose>
+                                    </DialogFooter>
+                                </DialogContent>
+                            </Dialog>
+                        </FieldContent>
+                        {errors.privacyAgreed?.message && <FieldError>{t(errors.privacyAgreed.message)}</FieldError>}
                     </Field>
 
                     <Button className="w-1/2 mx-auto" type="submit" disabled={isSubmitting}>

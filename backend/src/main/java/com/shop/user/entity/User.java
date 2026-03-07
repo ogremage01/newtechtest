@@ -32,17 +32,11 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = true)
-    private String address;
-
     @Column(nullable = true, length = 100)
     private String password;
 
     @Column(nullable = false, columnDefinition = "VARCHAR(20) DEFAULT 'USER'")
     private String role;
-
-    @Column(nullable = true)
-    private String phone;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
@@ -63,4 +57,22 @@ public class User {
 
     @Column(nullable = false, columnDefinition = "VARCHAR(20) DEFAULT 'LOCAL'")
     private String authProvider;
+
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private Boolean termsAgreed;
+
+    @Column(nullable = false)
+    private LocalDateTime termsAgreedAt;
+
+    @Column(nullable = false, columnDefinition = "VARCHAR(20) DEFAULT ''")
+    private String termsVersion;
+
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private Boolean privacyAgreed;
+
+    @Column(nullable = false)
+    private LocalDateTime privacyAgreedAt;
+
+    @Column(nullable = false, columnDefinition = "VARCHAR(20) DEFAULT ''")
+    private String privacyVersion;
 }

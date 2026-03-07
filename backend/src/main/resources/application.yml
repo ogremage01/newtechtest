@@ -26,3 +26,5 @@ app:
   jwt:
     secret: ${JWT_SECRET:your-256-bit-secret-change-in-production-must-be-long-enough}
     expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+  # 개인정보(주소, 전화번호) AES-256 암호화용 키. Base64 인코딩된 32바이트 권장.
+  personal-data-encryption-key: ${PERSONAL_DATA_ENCRYPTION_KEY:}

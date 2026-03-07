@@ -1,4 +1,9 @@
 # DB 없이 로컬 실행용 (H2 인메모리)
+app:
+  # 로컬 개발용 개인정보 암호화 키 (Base64, 32바이트). 운영에서는 반드시 PERSONAL_DATA_ENCRYPTION_KEY 로 별도 설정.
+  # Base64 32바이트 (43자 + 패딩). 운영 환경에서는 반드시 별도 키 설정.
+  personal-data-encryption-key: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+
 spring:
   sql:
     init:

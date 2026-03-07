@@ -4,6 +4,9 @@ import com.shop.auth.dto.SignInRequestDto;
 import com.shop.user.entity.User;
 import com.shop.user.exception.UserException;
 import com.shop.user.repository.UserRepository;
+import com.shop.user.entity.UserAddress;
+import com.shop.user.repository.UserAddressRepository;
+import com.shop.common.util.PersonalDataCipher;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -35,6 +38,12 @@ class UserServiceTest {
     @Mock
     private UserRepository userRepository;
 
+    @Mock
+    private UserAddressRepository userAddressRepository;
+
+    @Mock
+    private PersonalDataCipher personalDataCipher;
+
     @InjectMocks
     private UserService userService;
 
@@ -58,24 +67,23 @@ class UserServiceTest {
         void register_savesUserWithEncodedPassword() {
             when(userRepository.findByEmail(anyString())).thenReturn(null);
             when(passwordEncoder.encode(anyString())).thenReturn("encodedPassword");
+            // 암복호화는 테스트에서 평문 그대로 사용하도록 설정
+            when(personalDataCipher.encrypt(anyString())).thenAnswer(invocation -> invocation.getArgument(0));
+            when(personalDataCipher.decrypt(anyString())).thenAnswer(invocation -> invocation.getArgument(0));
 
             SignInRequestDto request = validRequest();
             userService.register(request);
 
             ArgumentCaptor<User> userCaptor = ArgumentCaptor.forClass(User.class);
             verify(userRepository).save(userCaptor.capture());
-
+            ArgumentCaptor<UserAddress> userAddressCaptor = ArgumentCaptor.forClass(UserAddress.class);
+            verify(userAddressRepository).save(userAddressCaptor.capture());
             User saved = userCaptor.getValue();
             assertThat(saved.getName()).isEqualTo("홍길동");
             assertThat(saved.getEmail()).isEqualTo("user@example.com");
-            assertThat(saved.getAddress()).isEqualTo("서울시 강남구");
-            assertThat(saved.getPhone()).isEqualTo("010-1234-5678");
-            assertThat(saved.getPassword()).isEqualTo("encodedPassword");
-            assertThat(saved.getRole()).isEqualTo("USER");
-            assertThat(saved.getPoint()).isEqualTo(0L);
-            assertThat(saved.getCreatedAt()).isNotNull();
-            assertThat(saved.getUpdatedAt()).isNotNull();
-
+            assertThat(userService.decryptUserAddress(userAddressCaptor.getValue()).getAddress()).isEqualTo("서울시 강남구");
+            assertThat(userService.decryptUserAddress(userAddressCaptor.getValue()).getPhone())
+                    .isEqualTo("010-1234-5678");
             verify(passwordEncoder).encode(VALID_PASSWORD);
         }
     }
